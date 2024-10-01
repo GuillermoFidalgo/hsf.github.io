@@ -6,7 +6,7 @@ layout: default
 
 ## About the HSF website
 
-This site is maintained by the HSF GitHub [contributors](https://github.com/orgs/HSF/people). If you're interested to become one contact the [HSF Steering Group]({{ site.baseurl }}/organization/team.html) or any team member. It was set up by Torre Wenaus and Benedikt Hegner.
+This site is maintained by the HSF GitHub [contributors](https://github.com/orgs/HSF/people). If you're interested to become one, contact the [HSF Steering Group]({{ site.baseurl }}/organization/team.html) or any team member. It was set up by Torre Wenaus and Benedikt Hegner.
 
 ## Implementation
 
@@ -29,26 +29,21 @@ The website uses the main branch of the [hsf.github.io](https://github.com/HSF/h
 If you are not familiar with GitHub and Git, you can read our [survival kit]({{ site.baseurl }}/github-beginners.html)!
 
 ### General structure of website content files
+
 All Markdown files of this site start with a section surrounded by `---`. This
 so-called *front-matter* contains metadata about the content. Such metadata are,
 e.g., the author of the document or the title of the document.
 
 In the *front-matter* (but not in the text itself), you need to replace any `&` characters (which has a special meaning in HTML) by `&amp;`. This is particularly important for the `title` attribute.
 
-### Adding content from collaborative tools
+### Adding content from collaborative tools (live notes)
 
-#### CodiMD
+#### Markdown file
 
-The recommended way to host a collaborative note book, e.g. for taking meeting minutes
-is to use [CodiMD](https://hackmd.io/c/codimd-documentation/%2Fs%2Fcodimd-documentation), which is
-a collaborative ediitng tool utilising Markdown directly. This makes it trivial to move
-the content into the HSF website for archiving.
+The recommended way to host a collaborative note book, e.g. for taking meeting minutes (live notes),
+is to use a collaborative editing tool utilising Markdown directly.  This makes it trivial to move the content into the HSF website for archiving.
 
-CERN has its own [CodiMD instance](https://codimd.web.cern.ch/), but currently this only
-works if every contributor has a full CERN account (EduGain authentication is proposed,
-but it doesn't work yet AFAWU). An alternative is the [demo CodiMD service](https://demo.codimd.org/),
-but be aware that there is no long term guarantee for content here, so move it to the 
-website after your meeting.
+[CodiMD](https://hackmd.io/c/codimd-documentation/%2Fs%2Fcodimd-documentation) is the suggested choice as it has been designed for collaboraitve editing of Markdown files. Unfortunately, the [Hackmd](https://hackmd.io) free service is now restricted to 4 editors. Another possibility, if you have a CERN account, is to use CERNBox which makes CodiMD available to edit Markdown files: you can then define a public link to the document (similar to Google Docs public links) to allow those without a CERN account to edit the file.
 
 We find that *recycling* the same document for a series of meetings is extremely useful
 as the *live notes* link can be copied and cloned from one meeting to the next.
@@ -59,6 +54,12 @@ Google Docs can also be used for shared notebooks, but in this case there is a n
 the document to Markdown before it can be added to the website. This is less convenient, but
 we have [documentation]({{ site.baseurl }}/jekyll-beginners.html) on how to do it.
 
+
+### Adding coordination meeting minutes
+
+HSF Coordination minutes are produced using the live notes approach described above. The content of the live notes are preformatted to be suitable for direct injection into Jekyll. The minutes file must be placed into Jekyll `organization/_posts` directory.
+
+The only edit required is the replacement of the *front-matter* section by the one present in the previous meeting minutes in Jekyll, updating the title (meeting number and date).
 
 ### Adding a working group or activity
 
@@ -83,7 +84,7 @@ entry you can either:
 
 1. Run the interactive script ``scripts/add_training_event.py`` (recommended)
 2. Directly edit the ``_data/trainning-schools.yml`` file and add another entry following the structure of the existing entries (note that events are sorted chronologically by starting date)
-    - There is one very rare thing you may need to do if the URL for the training event 
+    - There is one very rare thing you may need to do if the URL for the training event
       will not validate in the link checker, which is to add the tag `url_proof_ignore: true`
       to the YAML file (an example is a school that used a web technology that insists
       on setting cookies and issues continual redirects without this)
@@ -117,28 +118,29 @@ selected profiles into a page.
 
 As of writing, this website contains the following page templates for wider usage:
 
- * default - every page inherits from this
- * event - to be used for events
- * newsletter - to be used for news items and announcements
- * plain - to be used for standard contents
- * main - the main page w/ boxes
- * minutes - used for meeting minutes (the template adds
-   forward / backward navigation links)
+- default - every page inherits from this
+- event - to be used for events
+- newsletter - to be used for news items and announcements
+- plain - to be used for standard contents
+- main - the main page w/ boxes
+- minutes - used for meeting minutes (the template adds forward / backward navigation links)
 
 ### Menu bar and automatization
+
 The menu bar is defined in `_includes/navbar.ext`, from which all page layouts inherit.
 The layout is somewhat hard-coded, but working groups and activities are generated
 automatically.
 
 ### Main page
+
 The main page contains three blocks, mostly hard-coded:
 
-  * A *meetings* block, with links to the minutes of the last three meetings
+- A *meetings* block, with links to the minutes of the last three meetings
     auto-generated
-  * A news item that holds a small snippet of current important information
+- A news item that holds a small snippet of current important information
     (currently this is hard-coded, but it would be better if it were more
       dynamic)
-  * An *activities* block, that serves as an entry point to the main sections
+- An *activities* block, that serves as an entry point to the main sections
     of the website
 
 They are filled with *[Liquid](https://github.com/Shopify/liquid/wiki)* snippets.
